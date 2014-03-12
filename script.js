@@ -106,12 +106,4 @@ function pointClicked(e) {
   }
 }
 
-/*
-var hasTouch = "ontouchstart" in document;
-if (hasTouch) {
-  window.addEventListener('ontouchend', pointClicked, false);
-} else {
-}
-*/
-
 window.addEventListener('click', pointClicked, false);

@@ -24,5 +24,3 @@ Point.prototype.isValid = function(point) {
 
   return valid;
 }
-
-

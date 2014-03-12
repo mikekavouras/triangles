@@ -1,6 +1,7 @@
 var points = [];
 var pointCount = 0;
 var body = document.getElementsByTagName('body')[0];
+var hasTouch = "ontouchstart" in document;
 
 function defer(t) {
   setTimeout(function() {
@@ -59,7 +60,7 @@ function drawLine(point, angle, width, klasses) {
   });
 }
 
-function calculate(t) {
+function drawTriangle(t) {
   var m = (t.points[0].y - t.points[1].y) / (t.points[1].x - t.points[0].x);
 
   drawPoint(t.points[2], 'red');
@@ -91,10 +92,16 @@ function calculate(t) {
 }
 
 function pointClicked(e) {
+  var point;
   if (pointCount == 2) {
     reset();
   } else {
-    var point = new Point(e.pageX, e.pageY);
+    if (hasTouch) {
+      touch = e.touches[0];
+      point = new Point(touch.pageX, touch.pageY);
+    } else {
+      point = new Point(e.pageX, e.pageY);
+    }
     drawPoint(point);
     points.push(point);
     pointCount++;
@@ -102,8 +109,12 @@ function pointClicked(e) {
 
   if (pointCount == 2) {
     var t = new RightTriangle(points[0], points[1]);
-    calculate(t);
+    drawTriangle(t);
   }
 }
 
-window.addEventListener('click', pointClicked, false);
+if (hasTouch) {
+  document.addEventListener('touchstart', pointClicked, false);
+} else {
+  document.addEventListener('click', pointClicked, false);
+}

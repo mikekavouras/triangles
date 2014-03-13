@@ -113,8 +113,4 @@ function pointClicked(e) {
   }
 }
 
-if (hasTouch) {
-  document.addEventListener('touchstart', pointClicked, false);
-} else {
-  document.addEventListener('click', pointClicked, false);
-}
+document.addEventListener(hasTouch ? "touchstart" : "click", pointClicked, false);

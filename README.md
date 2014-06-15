@@ -7,6 +7,6 @@ A demonstration of angles.
 Click any two points in the window and a third point will appear to complete a right triangle.
 
 ## Triangle.js
-* An abstract Triangle 
+* An abstract Triangle class
 * A RightTriangle subclass.
 

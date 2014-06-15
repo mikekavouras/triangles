@@ -6,9 +6,7 @@ function Triangle(p1, p2, p3) {
 
   this.sides = [];
   this.angles = [];
-  this.points = [];
-
-  this.erros = [];
+  this.points = [p1, p2, p3];
 }
 
 Triangle.prototype.radiansToDegrees = function(rad) {
@@ -17,12 +15,7 @@ Triangle.prototype.radiansToDegrees = function(rad) {
 
 function RightTriangle(p1, p2, p3) {
 
-  // lots of validation that could happen
-
-  Triangle.call(this);
-
-  // points
-  this.points = [p1, p2, p3];
+  Triangle.call(this, p1, p2, p3);
 
   if (!(this.isValid())) {
     throw "Invalid right triangle";
@@ -50,7 +43,6 @@ RightTriangle.prototype.isValid = function(triangle) {
   var p = new Point(0, 0);
 
   if (t.points[0] == null || t.points[1] == null) {
-    console.error('A right triangle needs at least 2 angles');
     return false;
   }
 
